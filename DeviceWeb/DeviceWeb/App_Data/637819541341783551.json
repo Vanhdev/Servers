@@ -1,0 +1,11 @@
+{
+  "#action": "account_login",
+  "code": 0,
+  "value": {
+    "UserName": "admin",
+    "#token": "a9d21be1eb852d182c425577f5e9fc5d",
+    "Role": "Admin",
+    "_id": "admin",
+    "#login-time": "2022-03-04T01:28:54.1933528+07:00"
+  }
+}

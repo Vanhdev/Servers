@@ -1,0 +1,30 @@
+﻿{
+  "Login": {
+    "caption": "Login",
+    "fields": {
+      "UserName": { "caption": "User name" },
+      "Password": { "caption": "Password" }
+    }
+  },
+  "Server": {
+    "caption": "Servers",
+    "fields": {
+      "name": { "inputSize": 50 },
+      "title": { "inputSize": 50 },
+      "threadInterval": {
+        "inputSize": 50,
+        "input": "Number",
+        "value": 10
+      },
+      "memorySize": {
+        "inputSize": 50,
+        "input": "Number",
+        "value": 1
+      },
+      "fullPath": {
+        "input": "File",
+        "options": "Process|*.exe|All Files|*.*"
+      }
+    }
+  }
+}

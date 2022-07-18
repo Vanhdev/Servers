@@ -1,0 +1,13 @@
+{
+  "MemoryManager": {
+    "title": "Memory Manager",
+    "name": "Memory",
+    "threadInterval": 100,
+    "fileName": "MemoryManager.exe"
+  },
+  "Broker": {
+    "title": "MQTT broker",
+    "name": "Broker",
+    "memorySize": 4
+  }
+}

@@ -1,0 +1,32 @@
+﻿{
+  "text": "Server Manager",
+  "childs": [
+    {
+      "text": "Main",
+      "childs": [
+        {
+          "text": "Broker",
+          "url": "Server/Broker"
+        },
+        {
+          "text": "Memory Manager",
+          "url": "Server/Memory"
+        }
+      ]
+    },
+    {
+      "text": "Servers",
+      "childs": [
+        {
+          "text": "Create",
+          "url": "Server/Add"
+        },
+        {
+          "text": "Server List",
+          "url": "Server"
+        }
+      ]
+    }
+
+  ]
+}

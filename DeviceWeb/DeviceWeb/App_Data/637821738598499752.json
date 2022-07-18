@@ -1,0 +1,7 @@
+{
+  "#action": "remote_getDeviceStatus",
+  "code": 0,
+  "value": {
+    "ARM1": 1
+  }
+}

@@ -1,0 +1,20 @@
+﻿{
+  "Server": {
+    "caption": "Server List",
+    "columns": {
+      "name": { "width": 120 },
+      "title": { "width": 250 },
+      "threadInterval": {
+        "caption": "Thread Interval (ms)",
+        "width": 120
+      },
+      "memorySize": {
+        "caption": "Memory Size (MB)",
+        "width": 120
+      },
+      "State": {
+
+      }
+    }
+  }
+}

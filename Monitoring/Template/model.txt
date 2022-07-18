@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Models
+{{
+    public class {0} : DataContext, IModel
+    {{
+        public override string GetObjectIdName() => "Ma{0}";
+        public string Ma{0} => ObjectId;
+    }}
+    public class {0}Collection : DataMap<{0}>
+    {{
+
+    }}
+    partial class DB
+    {{
+        static {0}Collection {1};
+        public static {0}Collection {0}
+        {{
+            get
+            {{
+                if ({1} == null)
+                {{
+                    {1} = new {0}Collection();
+                    {1}.Load();
+                }}
+                return {1};
+            }}
+        }}
+    }}
+}}

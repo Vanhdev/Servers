@@ -1,0 +1,29 @@
+﻿{
+  "#": {
+    "width": 80,
+    "textAlignment": 1
+  },
+  "Id": {
+    "caption": "Mã",
+    "width": 150
+  },
+  "ObjectId": { "caption": "ID" },
+  "Token": {},
+  "title": { "caption": "Title", "textAlignment": 0 },
+  "name": { "caption": "Name", "textAlignment": 0 },
+  "threadInterval": {
+    "caption": "Thread Interval (ms)",
+    "width": 120
+  },
+  "memorySize": {
+    "caption": "Memory Size (MB)",
+    "width": 120
+  },
+  "path": {
+    "caption": "Location"
+  },
+  "fullPath": {
+    "caption": "File Location"
+  },
+  "State": { "caption": "State" }
+}

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32505.426
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryManager", "MemoryManager.csproj", "{888CBFB8-858B-4C2C-8B74-5825F2F2877B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{888CBFB8-858B-4C2C-8B74-5825F2F2877B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888CBFB8-858B-4C2C-8B74-5825F2F2877B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888CBFB8-858B-4C2C-8B74-5825F2F2877B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888CBFB8-858B-4C2C-8B74-5825F2F2877B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8CBF94F6-D8FA-412F-B761-5C4ED50D21DC}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,15 @@
+﻿{
+  "nichirin": {
+    "version": "V30",
+    "id": "D34F4441"
+  },
+  "V30": {
+    "#subscribe": "nichirin",
+    "#publish": "nichirin/remote/{0}",
+    "#info": "INFO()",
+    "ARM0": "ARM(0)",
+    "ARM1": "ARM(1)",
+    "DISARM": "DISARM()",
+    "CLA": "CLA()"
+  } 
+}

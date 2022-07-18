@@ -1,0 +1,39 @@
+{
+  "Memory": {
+    "memorySize": 1,
+    "threadInterval": 100,
+    "title": "Memory Manager",
+    "name": "Memory",
+    "fileName": "MemoryManager.exe",
+    "path": "H:\\Working\\AKS\\Servers\\Server Monitoring",
+    "State": "",
+    "_id": "07b02bf2fc2f52051ca18a58"
+  },
+  "Broker": {
+    "memorySize": 4,
+    "threadInterval": 10,
+    "title": "MQTT broker",
+    "name": "Broker",
+    "path": "H:\\Working\\AKS\\Servers\\Server Monitoring",
+    "State": "",
+    "_id": "07b02bf2fc2f52051ba18a58"
+  },
+  "AKS": {
+    "memorySize": 1,
+    "threadInterval": 10,
+    "name": "AKS",
+    "title": "A.K.S SERVER",
+    "path": "H:\\Working\\AKS\\Servers\\AksServer\\bin\\Debug",
+    "fileName": "AksServer.exe",
+    "State": "",
+    "_id": "07b02bf2fc2f52051aa18a58"
+  },
+  "NICHIRIN": {
+    "memorySize": 1,
+    "threadInterval": 10,
+    "name": "NICHIRIN",
+    "title": "Nichirin Server",
+    "path": "H:\\Working\\AKS\\Servers\\NichirinServer\\bin\\Debug",
+    "fileName": "NichirinServer.exe"
+  }
+}

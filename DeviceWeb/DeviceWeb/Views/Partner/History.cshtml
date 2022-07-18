@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "History";
+}
+
+<style>
+    .body-content {
+        padding-top: 20px;
+    }
+    .card-body {
+        font-size: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    table { width: 100%; }
+    tr:nth-of-type(2n+1) {
+        background-color: #eee;
+    }
+    th {
+        color: #080;
+        width: 80px;
+        padding-left: 5px;
+        font-weight: 500;
+    }
+
+    .row > .card {
+        margin-right: 10px;
+    }
+    .row > .card > .card-body {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    .row > .collapsed-card {
+        height: 45px;
+    }
+
+    @@media (max-width: 768px) {
+        .row > .card {
+            margin-right: 0;
+        }
+    }
+
+</style>
+
+<script>
+    let data = @(new HtmlString(Newtonsoft.Json.Linq.JObject
+            .FromObject(Model).ToString()));
+    
+    let map = {};
+    let day = null;
+
+    for (var key in data) {
+        var d = key.substr(0, 10);
+        if (d != day) {
+            map[day = d] = {};
+        }
+        map[day][key.substr(11, 8)] = data[key];        
+    }
+    let collapsed = false;
+
+    var hisBody = new panel();
+    for (var d in map) {
+        var card = hisBody.child(new Card("warning card-outline col-md-4")
+            .header(d)
+            .collapse(collapsed));
+
+        var content = map[d];
+        var table = new tag("table");
+
+        for (var t in content) {
+            var row = table.child(new tag("tr"));
+            row.child(new tag("th").html(t));
+            row.child(new tag("td").html(content[t]));
+
+        }
+        card.body(table);
+        collapsed = true;
+    }
+   
+    var main = new Card("primary card-outline")
+        .header("History")
+        .body(hisBody);
+        
+    render(main);
+</script>
+

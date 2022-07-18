@@ -1,0 +1,12 @@
+{
+  "#action": "service_getDeviceList",
+  "code": 0,
+  "value": [
+    {
+      "_id": "D34F4441",
+      "version": "V30",
+      "model": "SECURITY",
+      "setting": "{\r\n  \"SMS\": \"[\\r\\n  \\\"989154248\\\",\\r\\n  \\\"12345\\\",\\r\\n  \\\"123456\\\",\\r\\n  \\\"\\\",\\r\\n  \\\"\\\"\\r\\n]\"\r\n}"
+    }
+  ]
+}

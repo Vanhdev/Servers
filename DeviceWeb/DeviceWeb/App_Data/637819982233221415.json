@@ -1,0 +1,7 @@
+{
+  "#action": "service_GetDeviceStatus",
+  "code": 0,
+  "value": {
+    "ARM1": 1
+  }
+}

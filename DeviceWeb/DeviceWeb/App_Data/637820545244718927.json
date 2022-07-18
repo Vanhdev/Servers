@@ -1,0 +1,5 @@
+{
+  "#action": "remote_setting",
+  "code": 100,
+  "message": "Token timeout"
+}

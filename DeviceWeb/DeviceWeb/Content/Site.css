@@ -1,0 +1,302 @@
+﻿body {
+    padding-bottom: 20px;
+    background-color: #eee;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding: 15px;
+    margin-top: 60px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}
+*/
+
+/******* CARD *****/
+
+.card-header h5 {
+    float: left;
+}
+
+/************ DATA TABLE **************/
+table {
+    width: 100%;
+}
+
+tr[data-role=hide] {
+    display: none;
+}
+
+.data-table .card-footer .btn {
+    padding: 3px;
+    color: #999;
+    min-width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+    .data-table .card-footer .btn[data-role=active] {
+        background-color: #111;
+        color: white;
+        font-weight: 600;
+        line-height: 1;
+    }
+    .data-table tr .fa {
+        margin-right: 8px;
+        color: #999;
+    }
+
+
+@media (min-width:768px) {
+    table {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    thead {
+    }
+}
+
+.data-table {
+    position: relative;
+}
+.search-bar {
+    position: absolute;
+    width: 100%;
+    padding: 0.5em
+}
+
+.card-default .search-bar form {
+    border: 1px solid #ccc;
+}
+
+    .search-bar form {
+        background-color: #fff;
+        border-radius: 25px;
+        padding: 5px;
+    }
+
+    .search-bar button {
+        color: #999;
+        border: none;
+        margin-left: 5px;
+        background-color: transparent;
+    }
+
+    .search-bar input {
+        width: calc(100% - 60px);
+        outline: none;
+        border: none;
+    }
+
+
+/* forms */
+.section-text {
+    color: rgb(0, 140, 253);
+    margin: 20px 0;
+}
+
+.input-group-prepend {
+    max-width: 40px;
+    min-width: 40px;
+}
+
+input[type=checkbox] {
+    height: 20px;
+    max-width: 20px;
+    margin-top: 3px;
+    margin-right: 10px;
+}
+
+.inline-label {
+    font-weight: 400 !important;
+}
+
+.input-group-prepend > .input-group-text {
+    width: 100%;
+}
+
+.input-group .fa {
+    color: #666;
+}
+.input-group.input-required .fa {
+    color: #c00;
+}
+.input-group label {
+    color: #999;
+}
+.input-radio-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.input-radio-box li {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+    .input-radio-box li:hover {
+        opacity: 1;
+    }
+
+.input-radio-box span {
+    position: absolute;
+    width: 20px !important;
+    height: 20px;
+    left: 0px;
+    top: 3px;
+    border: 1px solid #999;
+    border-radius: 50%;
+}
+
+.input-radio-box li span i {
+    position: absolute;
+    width: 78%;
+    height: 78%;
+    left: 10%;
+    top: 10%;
+    background-color: rgb(0, 140, 253);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.input-radio-box li.active span i {
+    opacity: 1;
+}
+
+.input-group label {
+    font-weight: 400 !important;
+}
+
+.input-check-box {
+    position: relative;
+    line-height: 2em;
+    border: none;
+}
+
+    .input-check-box > label {
+        position: absolute;
+        font-size: 1em;
+        left: 2.4em;
+        top: 0;
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+    .input-check-box > input {
+        display: none;
+    }
+
+    .input-check-box > div {
+        position: absolute;
+        top: 0.4em;
+        width: 1.2em;
+        height: 1.2em;
+        border: 1px solid #ced4da;
+    }
+
+    .input-check-box:hover > label {
+        opacity: 1;
+    }
+
+    .input-check-box > div.checked {
+        border-color: rgb(0, 140, 253);
+        background-color: rgb(0, 140, 253);
+    }
+
+        .input-check-box > div.checked > div {
+            transform: rotate(45deg);
+            border: 2px solid #fff;
+            border-left: none;
+            border-top: none;
+            width: 40%;
+            height: 80%;
+            margin-left: 30%;
+            margin-top: -5%;
+        }
+
+    .input-check-box.danger > div.checked > div {
+        background-color: red;
+    }
+
+.input-multiline-box {
+    height: auto;
+}
+.input-multiline-box div {
+    min-height:
+}
+
+.btn-indigo {
+    color: #fff !important;
+    background-color: #6610f2;
+    opacity: 0.9;
+}
+.btn-indigo:hover {
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    .form,
+    form.card {
+        max-width: 60%;
+        margin-left: 20%;
+    }
+}
+
+.form-footer,
+form .card-footer {
+    text-align: center;
+}
+    .form-footer > .btn,
+    form .card-footer > .btn {
+        min-width: 80px;
+        margin: 0 3px;
+    }
+
+/**************  MODAL   *************/
+.modal {
+    background-color: rgba(1, 1, 1, 0.5);
+}
+.modal .modal-dialog {
+    margin-top: 20% !important;
+}
+.modal-content.primary .modal-header {
+    background-color: rgb(0, 140, 253);
+}
+.modal-content.warning .modal-header {
+    background-color: #f80;
+}
+.modal-content.danger .modal-header {
+    background-color: #f00;
+}
+.modal-content.success .modal-header {
+    background-color: #080;
+}
+
+.modal .input-group {
+    margin-top: 20px;
+}
+
+.modal-content .modal-header {
+    color: #fff;
+}
+
+
+
+/******** PRINT **********/
+.print-template {
+    display: none;
+}
+
+@media print {
+    .print-template {
+        display: block;
+    }
+}

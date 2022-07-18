@@ -1,0 +1,148 @@
+﻿@{
+    var frmBodyInfo = new HtmlSectionList {
+        new HtmlSection {
+            Text = "Enter the owner server name",
+            Fields = new HtmlFieldList {
+                new HtmlField { Name = "#server", Caption = "Server name", IconName = "server" },
+            }
+        },
+        new HtmlSection {
+            Text = "Enter you account information",
+            Fields = new HtmlFieldList {
+                new HtmlField { Name = "UserName", Caption = "User name", IconName = "user" },
+                new HtmlField { Name = "Password", Caption = "Password", IconName = "lock", Input="password" },
+            }
+        },
+        new HtmlSection {
+            Text = "Options",
+            Fields = new HtmlFieldList {
+                new HtmlField { Name = "KeepLogin", Caption = "Remember me", Input = "check" },
+            }
+        }
+    };
+}
+<style>
+    .login-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .navbar,
+    footer {
+        display: none;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <form id="login-form" data-api="account/login" method="post">
+            <div>A.K.S</div>
+        </form>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
+<script>
+
+    session.start = function () { }
+
+    let formInfo = {
+        //header: "LOGIN",
+        //url: "account/login",
+        sections: @(frmBodyInfo.ToHtml()),
+    };
+
+    let loginInfo = cookie.getObject("login-info");
+    let frm = $form("#login-form")
+        .init(formInfo)
+        .card()
+        .val(loginInfo ?? {})
+
+    frm.validate = function (data) {
+        var s = data["#server"];
+        session.set("server", s);
+        if (data.KeepLogin) {
+            cookie.set("login-info", loginInfo = {
+                "#server": s,
+                UserName: data.UserName,
+                Password: data.Password,
+                KeepLogin: 1,
+            });
+        }
+        return data
+    }
+
+    session.set("token", "");
+</script>
+
+<script>
+    api.onerror = function (c, m) {
+        let msg = m ?? "Unknown Error";
+        switch (c) {
+            case -1: msg = "User not found"; break;
+            case -2: msg = "Password invalid"; break;
+        }
+        toastr.error(msg);
+    }
+    api.onsuccess = function (v, m) {
+        session.set("token", v["#token"]);
+        cookie.set("user-info", v);
+
+        redirect("/login/success?info=" + btoa(JSON.stringify(v)));
+    }
+</script>
+
+
+@*<div class="login-box">
+        <div class="">
+            <script>
+            var frmInfo = {
+                header: "LOGIN",
+                url: "account/login",
+                sections: @(frmBodyInfo.ToHtml()),
+                className: "primary",
+            };
+            render(new ApiForm(frmInfo));
+            setCookie("token", null, -1);
+            </script>
+
+        </div>
+
+    </div>
+
+    <script>
+        function raiseApiResponseError(code, message) {
+            if (!message) {
+                message = (code == -1 ? "User name" : "Password") + " invalid.";
+            }
+            toastr.error("Code " + code + ": " + message)
+        }
+        function raiseApiResponseOK(value) {
+
+            var token = value["#token"];
+            var server = document.getElementById("#server").value;
+
+            setCookie("token", token, 1);
+            setCookie("server-name", server, 30);
+
+            var frm = new tag("form")
+                .attr("action", "/login/success")
+                .attr("method", "post")
+                .show(false);
+            value["#server"] = server;
+            frm.child(new input())
+                .attr("name", "info")
+                .value(JSON.stringify(value))
+
+            //console.log(frm.node.outerHTML);
+
+            document.body.appendChild(frm.node);
+            frm.node.submit();
+
+            //redirect("/login/success?info=" + btoa(JSON.stringify(value)));
+        }
+
+    </script>*@

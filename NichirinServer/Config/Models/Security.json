@@ -1,0 +1,122 @@
+[
+  {
+    "model": "SECURITY",
+    "version": "V30",
+    "config": {
+      "topic": "response/default/{0}",
+      "status": [
+        {
+          "name": "System",
+          "bits": {
+            "DISARM": {
+              "name": "Disarm",
+              "value": 0
+            },
+            "ARM1": {
+              "name": "ARM Home",
+              "value": 1
+            },
+            "ARM0": {
+              "name": "ARM Away",
+              "value": 2
+            }
+          }
+        },
+        {
+          "name": "Outputs",
+          "bits": {
+            "OUTPUT0": {
+              "name": "RELAY 1",
+              "value": 1
+            },
+            "OUTPUT1": {
+              "name": "RELAY 2",
+              "value": 2
+            },
+            "OUTPUT2": {
+              "name": "RELAY 3",
+              "value": 4
+            },
+            "OUTPUT3": {
+              "name": "RELAY 4",
+              "value": 8
+            }
+          }
+        },
+        {
+          "name": "Inputs",
+          "bits": {
+            "INPUT0": {
+              "name": "INPUT 1",
+              "value": 1
+            },
+            "INPUT1": {
+              "name": "INPUT 2",
+              "value": 2
+            },
+            "INPUT2": {
+              "name": "INPUT 3",
+              "value": 4
+            },
+            "INPUT3": {
+              "name": "INPUT 4",
+              "value": 8
+            }
+          }
+        },
+        {
+          "name": "RS485",
+          "bits": {
+            "ZONE0": {
+              "name": "ZONE 1",
+              "value": 1
+            },
+            "ZONE1": {
+              "name": "ZONE 2",
+              "value": 2
+            },
+            "ZONE2": {
+              "name": "ZONE 3",
+              "value": 4
+            },
+            "ZONE3": {
+              "name": "ZONE 4",
+              "value": 8
+            }
+          }
+        },
+        {
+          "name": "Beam Address",
+          "bits": {
+            "ALL": {
+              "name": "Address",
+              "value": 255
+            }
+          }
+        }
+      ],
+      "alarm": {
+        "beam": {}
+      },
+      "control": {
+        "ARM0": {
+          "func": "ARM",
+          "args": [1]
+        },
+        "ARM1": {
+          "func": "ARM",
+          "args": [2]
+        },
+        "DISARM": {
+          "func": "ARM",
+          "args": [0]
+        },
+        "CLA": {
+          "func": "CLA"
+        }
+      },
+      "setting": {
+      }
+    }
+  }
+]

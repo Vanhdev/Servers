@@ -1,0 +1,11 @@
+{
+  "#action": "service_getDeviceList",
+  "code": 0,
+  "value": [
+    {
+      "_id": "D34F4441",
+      "version": "V30",
+      "model": "SECURITY"
+    }
+  ]
+}

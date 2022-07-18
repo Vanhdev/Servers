@@ -1,0 +1,51 @@
+﻿@{
+    var formInfo = new HtmlSectionList {
+        new HtmlSection {
+            Text = "Enter your current password",
+            Fields = new HtmlFieldList {
+                new HtmlField { Name = "Password", Caption = "Current password", IconName = "lock", Input = "password" },
+            }
+        },
+        new HtmlSection {
+            Text = "Enter and confirm your new password",
+            Fields = new HtmlFieldList {
+                new HtmlField { Name = "NewPass", Caption = "New password", IconName = "lock", Input = "password" },
+                new HtmlField { Name = "Confirm", IconName = "lock", Input = "password" },
+            }
+        },
+    };
+}
+<style>
+    .login-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-75%);
+    }
+
+    .btn {
+        width: 100%;
+    }
+</style>
+
+<div class="login-box">
+    <div class="">
+        <script>
+            var frmInfo = {
+                header: "Change password",
+                url: "account/changePassword",
+                sections: @(formInfo.ToHtml()),
+                className: "warning",
+            };
+            render(new ApiForm(frmInfo));
+        </script>
+
+    </div>
+
+</div>
+
+<script>
+    function raiseApiResponseError(context) {
+        toastr.error("Password " + (context.Code == -1 ? "invalid" : "not match"))
+    }
+</script>

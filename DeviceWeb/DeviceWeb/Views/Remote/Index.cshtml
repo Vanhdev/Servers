@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "Remote control";
+}
+
+<style>
+    .main-card {
+        display: block;
+        width: 400px;
+        left: 50%;
+        transform: translate(-50%,0);
+    }
+
+    @@media(max-width:600px) {
+        .main-card {
+            width: 100%;
+        }
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+        .btn[data-state=true] {
+            background-color: #080;
+            color: #fff;
+        }
+
+    .output {
+        width: calc(50%);
+        display: inline-block;
+        padding-left: 20px;
+        position: relative;
+        color: #9d9d9d;
+    }
+
+    .led {
+        width: 13px;
+        height: 13px;
+        border-radius: 6px;
+        border: 1px solid #9d9d9d;
+        position: absolute;
+        left: 0;
+        top: 5px;
+        transition: all 0.1s;
+    }
+
+    .output[data-state=true] .blink {
+        background-color: #f00;
+        border-color: #f00;
+    }
+
+    .card.arm-mode .btn {
+        margin-top: 5px;
+    }
+
+    .card-footer a {
+        margin-right: 20px;
+    }
+
+    .card-footer > a > i {
+        margin-right: 5px;
+    }
+
+    body {
+        background-color: #d0d0d0;
+    }
+</style>
+<script type="text/javascript" src="~/Scripts/device.js"></script>
+<script>
+    loadSession('@Model');
+    console.log(device);
+
+    api.device = device;
+</script>
+
+<script>
+
+        let sysBody
+            = "<button class='signal' id='ARM0'>ARM AWAY</button>"
+            + "<button class='signal' id='ARM1'>ARM HOME</button>"
+            + "<button class='signal' id='DISARM'>DISARM</button>"
+            //+ "<button onclick='getDeviceStatus()'>Demo</button>"
+
+        let sys = new Card("primary card-outline arm-mode")
+            .header("ARM mode")
+            .body(sysBody);
+
+
+        let alarmBody
+            = "<div class='signal output' id='OUTPUT0'>RELAY 1</div>"
+            + "<div class='signal output' id='OUTPUT1'>RELAY 2</div>"
+            + "<div class='signal output' id='OUTPUT2'>RELAY 3</div>"
+            + "<div class='signal output' id='OUTPUT3'>RELAY 4</div>"
+
+    let alarm = new Card("warning card-outline")
+            .id("outputs")
+            .header("Alarm")
+            .body(alarmBody)
+            .footer("<button id='CLA'>CLEAR ALARM</button>");
+</script>
+
+<div class="card card-indigo main-card">
+    <div class="card-header">
+        <h5 style="display:inline-block">Device Status</h5>
+    </div>
+    <div class="card-body">
+        <script>
+            render(sys);
+            render(alarm);
+        </script>
+    </div>
+    <div class="card-footer text-center">
+        <a href="#" onclick="redirect('/remote/setting/' + device._id)"><i class="fa fa-cogs"></i><span>Setting</span></a>
+        <a href="#" onclick="redirect('/remote/history/' + device._id)"><i class="fa fa-history"></i><span>History</span></a>
+    </div>
+</div>
+
+<script>
+
+    api.onerror = function (code, message) {
+        if (code == 100) {
+            toastr.error(message);
+            setTimeout(() => redirect("/login"), 1000);
+        }
+    }
+
+
+    function blinking() {
+        var danger = false;
+        for (const relay of relays) {
+            var led = relay.firstElementChild;
+            if (relay.getAttribute("data-state") == 'false') {
+                led.className = 'led';
+                continue;
+            }
+            danger = true;
+            led.className = led.className.length > 3 ? 'led' : 'led blink';
+        }
+        return danger;
+    }
+    function updateStatus(info) {
+        if (!info) { return; }
+        for (const sig of document.getElementsByClassName("signal")) {
+            sig.setAttribute('data-state', info[sig.id] ? true : false);
+        }
+        blinking();
+    }
+    function getDeviceStatus() {
+        api.onsuccess = function (value) {
+            updateStatus(value);
+        }
+        api.post("remote/getDeviceStatus", null);
+    }
+
+    let timer = null;
+    function loop() {
+        timer = setInterval(getDeviceStatus, 500);
+    }
+    function stop() {
+        clearInterval(timer);
+    }
+
+    var relays = document.getElementsByClassName("output");
+    for (const relay of relays) {
+        relay.innerHTML = "<div class='led'></div><span>" + relay.innerHTML + "</span>";
+    }
+    for (const btn of document.getElementsByTagName("button")) {
+        if (!btn.id) { continue; }
+
+        btn.className += " btn btn-default";
+        btn.addEventListener("click", function () {
+            api.onsuccess = function () { }
+            stop();
+            api.post("remote/control", btn.id);
+            loop();
+        })
+    }
+
+    loop();
+</script>

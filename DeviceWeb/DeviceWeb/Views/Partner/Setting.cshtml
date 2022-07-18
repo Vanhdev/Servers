@@ -1,0 +1,75 @@
+﻿@model Models.Device
+@{
+    ViewBag.Title = "Setting";
+}
+
+<style>
+    .input-group .btn {
+        opacity: 0.5;
+    }
+    .input-group .btn:hover {
+        opacity: 0.8;
+    }
+</style>
+<script>
+    function createPhoneSetting(name, caption) {
+        var info = [];
+        for (var i = 0; i < 5; i++) {
+            info.push({
+                name: name + i,
+                iconName: name,
+                required: false,
+                caption: '#' + (i + 1),
+            });
+        }
+        var frm = new ApiForm({
+            header: caption,
+            url: '',
+            fields: info,
+        }).id(name).collapse(true);
+
+        frm.setSubmit("sendPhoneSetting('" + name + "')");
+
+        for (const inp of frm.node.getElementsByClassName("input-group")) {
+            inp.innerHTML += "<button class='btn' onclick='doCut(this); return false;'><i class='fa fa-cut'></i></button>"
+        }
+
+        render(frm);
+    }
+    function doCut(btn) {
+        var p = btn.parentNode;
+        var inp = p.getElementsByTagName("input")[0];
+        inp.focus();
+        inp.select();
+
+        document.execCommand("cut");
+    }
+    function sendPhoneSetting(n) {
+        var frm = document.getElementById(n);
+        var inps = frm.getElementsByTagName("input");
+
+        var data = {
+            ObjectId: '@Model.ObjectId',
+            Name: n == 'sms' ? "SMS" : "CALL",
+            Numbers: [],
+        };
+        for (const inp of inps) {
+            data.Numbers.push(inp.value);
+        }
+        new API("customer/settingPhone").post(data);
+    }
+</script>
+
+<div class="row">
+    <div class="col-md-6">
+        <script>
+            createPhoneSetting("sms", "SMS numbers");
+        </script>    </div>
+    <div class="col-md-6">
+        <script>
+            createPhoneSetting("phone", "Call numbers");
+        </script>    
+    </div>
+</div>
+
+

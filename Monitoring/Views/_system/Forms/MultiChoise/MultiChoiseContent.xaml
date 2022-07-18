@@ -1,0 +1,21 @@
+﻿<UserControl xmlns:WPF="clr-namespace:VST.WPF"  x:Class="System.Windows.Controls.MultiChoiseContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Height="300" Width="400">
+    <Grid Margin="0, 0, 20, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid>
+            <WPF:PlaceholderTextBox x:Name="Search" />
+        </Grid>
+        <Border Grid.Row="1" 
+                BorderThickness="0, 0, 0, 1"
+                BorderBrush="#CCC" x:Name="TableContent">
+        </Border>
+    </Grid>
+</UserControl>

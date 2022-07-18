@@ -1,0 +1,193 @@
+﻿@{
+    ViewBag.Title = "Setting";
+}
+
+<style>
+    .input-group .btn {
+        opacity: 0.5;
+    }
+
+        .input-group .btn:hover {
+            opacity: 0.8;
+        }
+
+
+</style>
+
+<script type="text/javascript" src="~/Scripts/device.js?v=1.1"></script>
+<script>
+    let info = '@Model';
+    loadSession(info);
+    info = null;
+</script>
+
+<div class="row">
+    <div class="col-lg-6">
+        <script>
+            createPhoneSetting("sms", "SMS numbers");
+        </script>
+        <script>
+            createPhoneSetting("phone", "Call numbers");
+        </script>
+    </div>
+    <div class="col-lg-6">
+        <div class="card card-warning collapsed-card">
+            <div class="card-header">
+                <span>Schedule</span>
+                <div class="card-tools">
+                    <button class="btn btn-tool" data-card-widget="collapse"
+                            title="Collapse">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" id="day-menu">
+                    <div class="week-day" data-index="1">MON</div>
+                    <div class="week-day" data-index="2">TUE</div>
+                    <div class="week-day" data-index="3">WED</div>
+                    <div class="week-day" data-index="4">THU</div>
+                    <div class="week-day" data-index="5">FRI</div>
+                    <div class="week-day sat-day" data-index="6">SAT</div>
+                    <div class="week-day sun-day" data-index="0">SUN</div>
+                    <div class="week-day all-days active" data-index="7">ALL</div>
+                </div>
+                <table class="table-header">
+                    <tr>
+                        <th></th>
+                        <th>DISARM</th>
+                        <th>ARM 1</th>
+                        <th>ARM 2</th>
+                    </tr>
+                </table>
+                <div id="plan">
+                    <script>
+                        var table = new tag("table");
+                        for (let h = 0, r = 0; h < 24; h++) {
+                            for (let m = 0; m < 60; m += 30, r++) {
+                                var time = ((h < 10 ? '0' : '') + h) + ":" + ((m < 10 ? '0' : '') + m);
+                                var tr = table.child(new tag("tr"));
+                                tr.child(new tag("th").html(time).addClass("time"));
+                                for (let i = 0; i < 3; i++) {
+                                    tr.child(new tag("td").id(r + '_' + i).attr("onclick", "setPlan(" + r + "," + i + ")"));
+                                }
+                            }
+                        }
+                        render(table);
+                    </script>
+
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <button class="btn btn-warning" onclick="updatePlan()">Submit</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .week-day {
+        width: 12.5%;
+        color: #999;
+        font-size: 0.8em;
+        cursor: pointer;
+        text-align: center;
+        border-bottom: 2px solid transparent;
+    }
+
+        .week-day.active {
+            border-bottom-color: red;
+        }
+
+    .sat-day {
+        color: #00c;
+    }
+
+    .sun-day {
+        color: #c00;
+    }
+
+    .all-days {
+        color: #0c0;
+    }
+
+    #plan {
+        max-height: 500px;
+        overflow: auto;
+    }
+
+    table {
+        width: 100% !important;
+        margin: 0 !important;
+        margin-top: 20px !important;
+    }
+
+    th {
+        text-align: center;
+        font-weight: 500;
+    }
+
+    th, td {
+        width: 25%;
+    }
+
+    .table-header {
+        background: #423a80 !important;
+        color: white;
+        margin-top: 10px;
+    }
+
+    #plan th, #plan td {
+        border: 1px solid #ccc;
+    }
+
+    #plan td {
+        cursor: pointer;
+    }
+
+        #plan td[data-checked="true"] {
+            background-color: rgba(0, 128, 0, 0.5);
+        }
+
+    #plan tr:hover th {
+        background-color: #f80;
+        color: #fff;
+    }
+</style>
+
+<script>
+
+    loadSession('@Model');
+    api.device = device;
+
+    let setting = device.setting;
+    if (typeof(setting) === "string") {
+        device.setting = setting = JSON.parse(setting);
+    }
+    if (!setting.plan) {
+        setting.plan = {};
+    }
+
+    console.log(device);
+    let currentDay = {
+        index: 7,
+        plan: []
+    };
+
+
+    traversalDays((n, i) => n.setAttribute("onclick", "selectDay(this)"))
+
+    var rows = document.getElementById("plan")
+        .getElementsByTagName("tr");
+
+    var cells = document.getElementById("plan")
+        .getElementsByTagName("td");
+
+
+    api.onsuccess = function () {
+        toastr.success("Success");
+        saveSession();
+    }
+</script>
+

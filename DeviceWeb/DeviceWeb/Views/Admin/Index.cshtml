@@ -1,0 +1,95 @@
+﻿@model Aks.Devices.Device[]
+@{
+    ViewBag.Title = "Device List";
+}
+
+<style>
+    .main-card {
+        display: block;
+        width: 400px;
+        left: 50%;
+        transform: translate(-50%,0);
+    }
+    @@media(max-width:600px) {
+        .main-card {
+            width: 100%;
+        }
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+        .btn[data-state=true] {
+            background-color: #080;
+            color: #fff;
+        }
+
+    .output {
+        width: calc(50%);
+        display: inline-block;
+        padding-left: 20px;
+        position: relative;
+        color: #9d9d9d;
+    }
+
+    .led {
+        width: 13px;
+        height: 13px;
+        border-radius: 6px;
+        border: 1px solid #9d9d9d;
+        position: absolute;
+        left: 0;
+        top: 5px;
+        transition: all 0.1s;
+    }
+
+    .output[data-state=true] .blink {
+        background-color: #f00;
+        border-color: #f00;
+    }
+
+        .card.arm-mode .btn {
+            margin-top: 5px;
+        }
+
+        .card-footer a {
+            margin-right: 20px;
+        }
+    .card-footer > a > i {
+        margin-right: 5px;
+    }
+
+    body {
+        background-color: #d0d0d0;
+    }
+</style>
+
+<div class="row">
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-lg-4">
+                <div class="card card-indigo card-outline" onclick="redirect('/remote/index/@item.ObjectId')">
+                    <div class="card-header">
+                        <h5>@item.ObjectId</h5>
+                    </div>
+                    <div class="card-body">
+                        <span class="model">Model @(item.Model)</span><br />
+                        <span class="version">Version @(item.Version)</span>
+                    </div>
+                </div>
+            </div>
+        }
+        if (Model.Length == 1)
+        {
+            <script>
+                setTimeout( function() {
+                    redirect("/remote?id=@(Model[0].ObjectId)")
+                }, 2000);
+            </script>
+        }
+    }
+
+</div>
